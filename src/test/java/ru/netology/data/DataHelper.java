@@ -20,13 +20,6 @@ public class DataHelper {
     private DataHelper() {
     }
 
-    public static String getFirstCardNumber() {
-        return "4444 4444 4444 4441";
-    }
-
-    public static String getSecondCardNumber() {
-        return "4444 4444 4444 4442";
-    }
 
     public static String getStatusFirstCard() {
         return "APPROVED";
@@ -111,10 +104,10 @@ public class DataHelper {
 
     @Value
     public static class CardInfo {
-        String cardNumber;
+        String number;
         String month;
         String year;
-        String owner;
+        String holder;
         String cvc;
     }
 

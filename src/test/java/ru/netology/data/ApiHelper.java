@@ -32,7 +32,6 @@ public class ApiHelper {
                 .post("/payment")
                 .then()
                 .statusCode(200);
-//                .body("status", equalTo(status));
     }
 
     public static void payCreditCard(DataHelper.CardInfo approvedCardInfo){

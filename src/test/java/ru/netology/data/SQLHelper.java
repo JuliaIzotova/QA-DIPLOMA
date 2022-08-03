@@ -8,29 +8,34 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Timestamp;
 
 public class SQLHelper {
-    private static final String datasource = System.getProperty("datasource");
+    private static Connection connection;
+    public static QueryRunner runner;
+
+    @SneakyThrows
+    public static void start() {
+        runner = new QueryRunner();
+        connection = DriverManager.getConnection(System.getProperty("datasource"), "app", "pass");
+    }
+
 
     @SneakyThrows
     public static void databaseCleanUp() {
-        var runner = new QueryRunner();
+        start();
         var deleteFromOrder = "DELETE FROM order_entity;";
         var deleteFromCredit = "DELETE FROM credit_request_entity;";
         var deleteFromPayment = "DELETE FROM payment_entity;";
-
-        try (var connection = DriverManager.getConnection(
-                datasource, "app", "pass")) {
-            runner.update(connection, deleteFromOrder);
-            runner.update(connection, deleteFromCredit);
-            runner.update(connection, deleteFromPayment);
-        }
+        runner.update(connection, deleteFromOrder);
+        runner.update(connection, deleteFromCredit);
+        runner.update(connection, deleteFromPayment);
     }
 
     @Data
-   @AllArgsConstructor
+    @AllArgsConstructor
     @NoArgsConstructor
     public static class CreditRequestEntity {
         private String id;
@@ -41,13 +46,9 @@ public class SQLHelper {
 
     @SneakyThrows
     public static CreditRequestEntity getCreditRequestInfo() {
-        var runner = new QueryRunner();
+        start();
         var creditRequestInfo = "SELECT * FROM credit_request_entity ORDER BY created DESC;";
-
-        try (var connection = DriverManager.getConnection(
-                datasource, "app", "pass")) {
-            return runner.query(connection, creditRequestInfo, new BeanHandler<>(CreditRequestEntity.class));
-        }
+        return runner.query(connection, creditRequestInfo, new BeanHandler<>(CreditRequestEntity.class));
     }
 
     @Data
@@ -64,17 +65,15 @@ public class SQLHelper {
 
     @SneakyThrows
     public static PaymentEntity getPaymentInfo() {
-        var runner = new QueryRunner();
+        start();
         var paymentInfo = "SELECT * FROM payment_entity ORDER BY created DESC;";
         ResultSetHandler<PaymentEntity> resultSetHandler = new BeanHandler<>(PaymentEntity.class);
-        var connection = DriverManager.getConnection(datasource, "app", "pass");
-        {
-            return runner.query(connection, paymentInfo, resultSetHandler);
-        }
+        return runner.query(connection, paymentInfo, resultSetHandler);
     }
 
+
     @Data
-   @AllArgsConstructor
+    @AllArgsConstructor
     @NoArgsConstructor
     public static class OrderEntity {
         private String id;
@@ -85,15 +84,13 @@ public class SQLHelper {
 
     @SneakyThrows
     public static OrderEntity getOrderInfo() {
-        var runner = new QueryRunner();
+        start();
         var orderInfo = "SELECT * FROM order_entity ORDER BY created DESC;";
         ResultSetHandler<OrderEntity> resultSetHandler = new BeanHandler<>(OrderEntity.class);
-        var connection = DriverManager.getConnection(datasource, "app", "pass");
-        {
-            return runner.query(connection, orderInfo, resultSetHandler);
-        }
+        return runner.query(connection, orderInfo, resultSetHandler);
     }
 }
+
 
 
 

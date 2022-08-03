@@ -13,13 +13,6 @@ import static com.codeborne.selenide.Selenide.$x;
 import static ru.netology.page.MainPage.*;
 
 public class PaymentPage {
-//
-//    private static SelenideElement buttonBuy = $x("//span[text()='Купить']//ancestor::button");
-//    private static SelenideElement buttonBuyWithCredit = $x("//span[text()='Купить в кредит']//ancestor::button");
-//
-//    //    заголовки появляющиеся после нажатия кнопок
-//    private static SelenideElement buttonDebit = $(withText("Оплата по карте"));
-//    private static SelenideElement buttonCredit = $(withText("Кредит по данным карты"));
 
 
     public void payDebitCard() {
@@ -56,19 +49,19 @@ public class PaymentPage {
     }
 
     public void sendingValidData (DataHelper.CardInfo info) {
-        cardNumberField.setValue(info.getCardNumber());
+        cardNumberField.setValue(info.getNumber());
         monthField.setValue(info.getMonth());
         yearField.setValue(info.getYear());
-        ownerField.setValue(info.getOwner());
+        ownerField.setValue(info.getHolder());
         cvcField.setValue(info.getCvc());
         buttonContinue.click();
     }
 
     public void sendingNotValidData (DataHelper.CardInfo info) {
-        cardNumberField.setValue(info.getCardNumber());
+        cardNumberField.setValue(info.getNumber());
         monthField.setValue(info.getMonth());
         yearField.setValue(info.getYear());
-        ownerField.setValue(info.getOwner());
+        ownerField.setValue(info.getHolder());
         cvcField.setValue(info.getCvc());
         buttonContinue.click();
     }
@@ -106,7 +99,7 @@ public class PaymentPage {
     }
 
     public void sendingEmptyNameValidData (DataHelper.CardInfo info) {
-        cardNumberField.setValue(info.getCardNumber());
+        cardNumberField.setValue(info.getNumber());
         monthField.setValue(info.getMonth());
         yearField.setValue(info.getYear());
         cvcField.setValue(info.getCvc());
@@ -139,10 +132,12 @@ public class PaymentPage {
     }
 
     public void bankApproved() {
+
         notificationApproved.shouldBe(visible, Duration.ofSeconds(15));
     }
 
     public void bankDeclined() {
+
         notificationError.shouldBe(visible, Duration.ofSeconds(15));
     }
 
