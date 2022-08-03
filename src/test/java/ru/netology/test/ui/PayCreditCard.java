@@ -53,7 +53,7 @@ public class PayCreditCard {
         var creditRequest = getCreditRequestInfo();
         var orderInfo = getOrderInfo();
         assertEquals(expected, getCreditRequestInfo().getStatus());
-        assertEquals(getOrderInfo().getPayment_id(), getCreditRequestInfo().getBank_id());
+        assertEquals(orderInfo.getPayment_id(), creditRequest.getBank_id());
     }
 
     @Test
@@ -64,8 +64,9 @@ public class PayCreditCard {
         var info = DataHelper.getDeclinedCard();
         paymentPage.sendingNotValidData(info);
         paymentPage.bankDeclined();
-        var paymentStatus = getPaymentInfo();
-        assertEquals("DECLINED", paymentStatus);
+        var expected = getStatusSecondCard();
+        var paymentInfo = getPaymentInfo().getStatus();
+        assertEquals(expected, paymentInfo);
     }
 
 

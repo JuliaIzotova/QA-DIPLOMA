@@ -59,19 +59,6 @@ public class PayDebitCard {
         assertEquals(expectedAmount, paymentInfo.getAmount());
     }
 
-    @Test
-    @SneakyThrows
-    @DisplayName("Покупка кредитной невалидной картой")
-    void shouldTrueFullFormWithCreditWithDeclinedCard() {
-        paymentPage.buyCreditCard();
-        var info = DataHelper.getDeclinedCard();
-        paymentPage.sendingNotValidData(info);
-        paymentPage.bankDeclined();
-        var expected = getStatusSecondCard();
-        var paymentInfo = getPaymentInfo().getStatus();
-        assertEquals(expected, paymentInfo);
-    }
-
 
     @Test
     @SneakyThrows
