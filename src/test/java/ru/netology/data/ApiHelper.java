@@ -46,24 +46,26 @@ public class ApiHelper {
 
     }
 
-    public static void createPaymentError(DataHelper.CardInfo cardInfo){
+    public static void createPaymentError(DataHelper.CardInfo declinedCardInfo){
+        cardInfo = DataHelper.getDeclinedCard();
         given()
                 .spec(requestSpec)
                 .body(cardInfo)
                 .when()
                 .post("/payment")
                 .then()
-                .statusCode(400);
+                .statusCode(200);
     }
 
-    public static void createCreditError(DataHelper.CardInfo cardInfo){
+    public static void createCreditError(DataHelper.CardInfo declinedCardInfo){
+        cardInfo = DataHelper.getDeclinedCard();
         given()
                 .spec(requestSpec)
                 .body(cardInfo)
                 .when()
                 .post("/credit")
                 .then()
-                .statusCode(400);
+                .statusCode(200);
     }
 }
 

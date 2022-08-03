@@ -68,8 +68,8 @@ public class PayDebitCard {
         paymentPage.sendingNotValidData(info);
         paymentPage.bankDeclined();
         var expected = getStatusSecondCard();
-        var paymentStatus = getPaymentInfo();
-        assertEquals(expected, paymentStatus);
+        var paymentInfo = getPaymentInfo().getStatus();
+        assertEquals(expected, paymentInfo);
     }
 
 
