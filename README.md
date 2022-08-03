@@ -24,7 +24,7 @@ ___
 * Для MySQL:  
 `./gradlew clean test -Durl=jdbc:mysql://localhost:3306/app`  
 * Для PostgreSQL:  
-`./gradlew clean test -DdbUrl=jdbc:postgresql://localhost:5432/app`  
+`./gradlew clean test -Durl=jdbc:postgresql://localhost:5432/app`  
 6. Создать отчёт Allure  
 `.\gradlew allureServe`  
 7. Для завершения работы allureServe выполнить команду  
