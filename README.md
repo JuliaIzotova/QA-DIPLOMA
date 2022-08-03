@@ -2,6 +2,7 @@
 ___
 ### Дипломный проект представляет собой комплексное автоматизированное тестирования веб-сервиса по покупке тура.
 ___
+
 ## Документация проекта:
 [1. Задание к диплому](https://github.com/JuliaIzotova/QA-DIPLOMA/blob/main/docs/Ex_diplom.md)  
 [2.План автоматизации](https://github.com/JuliaIzotova/QA-DIPLOMA/blob/main/docs/Plan.md)  
