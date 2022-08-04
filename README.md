@@ -6,8 +6,8 @@ ___
 ## Документация проекта:
 [1. Задание к диплому](https://github.com/JuliaIzotova/QA-DIPLOMA/blob/main/docs/Ex_diplom.md)  
 [2.План автоматизации](https://github.com/JuliaIzotova/QA-DIPLOMA/blob/main/docs/Plan.md)  
-[3.Отчет по итогам тестирования]()  
-[4.Отчет по итогам автоматизации]()  
+[3.Отчет по итогам тестирования](https://github.com/JuliaIzotova/QA-DIPLOMA/blob/main/docs/Report.md)  
+[4.Отчет по итогам автоматизации](https://github.com/JuliaIzotova/QA-DIPLOMA/blob/main/docs/Summary.md)  
 
 ___
 ## Запуск SUT, авто-тестов и генерация отчетов
