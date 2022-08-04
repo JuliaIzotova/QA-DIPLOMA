@@ -232,7 +232,7 @@ public class PayCreditCard {
     }
 
     @Test
-    @DisplayName("Покупка кредитной картой: заполнение поле владелец русскими буквами" +
+    @DisplayName("Покупка кредитной картой: заполнение поле владелец только фамилией" +
             " остальные поля -валидные данные")
     public void shouldOnlySurnameInFieldNameWithCredit() {
         paymentPage.buyCreditCard();
@@ -271,7 +271,6 @@ public class PayCreditCard {
         paymentPage.sendingValidData(info);
         paymentPage.sendingValidDataWithFieldCVVError();
     }
-
 
 }
 

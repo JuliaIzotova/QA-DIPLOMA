@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 
 import java.sql.Connection;
@@ -19,7 +18,7 @@ public class SQLHelper {
     @SneakyThrows
     public static void start() {
         runner = new QueryRunner();
-        connection = DriverManager.getConnection(System.getProperty("datasource"), "app", "pass");
+        connection = DriverManager.getConnection(System.getProperty("datasource"), "datasource.user", "datasource.password");
     }
 
 
@@ -67,8 +66,7 @@ public class SQLHelper {
     public static PaymentEntity getPaymentInfo() {
         start();
         var paymentInfo = "SELECT * FROM payment_entity ORDER BY created DESC;";
-        ResultSetHandler<PaymentEntity> resultSetHandler = new BeanHandler<>(PaymentEntity.class);
-        return runner.query(connection, paymentInfo, resultSetHandler);
+        return runner.query(connection, paymentInfo, new BeanHandler<>(PaymentEntity.class));
     }
 
 
@@ -86,8 +84,7 @@ public class SQLHelper {
     public static OrderEntity getOrderInfo() {
         start();
         var orderInfo = "SELECT * FROM order_entity ORDER BY created DESC;";
-        ResultSetHandler<OrderEntity> resultSetHandler = new BeanHandler<>(OrderEntity.class);
-        return runner.query(connection, orderInfo, resultSetHandler);
+        return runner.query(connection, orderInfo, new BeanHandler<>(OrderEntity.class));
     }
 }
 

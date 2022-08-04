@@ -17,7 +17,7 @@ ___
 `docker-compose up-d`  
 4. Запустить приложение:
 * Для MySQL:  
-`java -jar./artifacts/aqa-shop.jar -- spring.datasource.url=jdbc:mysql://localhost:3306/app`  
+`java -jar ./artifacts/aqa-shop.jar -- spring.datasource.url=jdbc:mysql://localhost:3306/app`  
 * Для PostgreSQL:  
 `java -jar ./artifacts/aqa-shop.jar --spring.datasource.url=jdbc:postgresql://localhost:5432/app`  
 5. В новой вкладке терминала в IDEA запустить автотесты
